@@ -5,4 +5,5 @@ Tecnologias a serem utilizadas:
 
 React native
 Javascript
+merge-images
 
