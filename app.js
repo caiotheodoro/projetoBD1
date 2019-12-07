@@ -5,13 +5,15 @@ const passport = require('passport')
 const handlebars =  require('express-handlebars')
 const bodyParser = require('body-parser')
 const bcrypt = require('bcryptjs')
-const session = require("express-session")
-const flash = require("connect-flash")
+const session = require('express-session')
+const flash = require('connect-flash')
 var users = require('./routes/users');
 app.use('/routes/users', users);
 const PORT = 3000; //porta padrão
 const mysql = require('mysql');
 const router = express.Router();
+const cookieParser = require('cookie-parser')
+const { check, validationResult } = require('express-validator');
 const connection = require('./nodemysql/create-table.js')
 //config
     //sessao
@@ -41,6 +43,9 @@ const connection = require('./nodemysql/create-table.js')
     app.use(bodyParser.urlencoded({extended: true}))
     app.use(bodyParser.json())
     
+
+
+    app.use(cookieParser());
     // public/bootstrap
     app.use(express.static(path.join(__dirname, 'public')));
 
@@ -76,9 +81,8 @@ app.get('/enviarRedacao', function(req, res, next) {
     res.render('enviarRedacao', { title: 'Express' });
   });
   app.get('/redacoesCorrigidas', function(req, res, next) {
-    Post.find().then((redacoes) => {
+    execSQLQuery('SELECT * FROM CANECA', res);
       res.render('redacoesCorrigidas', {redacoes: redacoes})
-    })
   });
   app.get("/redacoesCorrigidas/edit/:id",(req, res) => {
     Post.findOne({_id: req.params.id}).then((redacoes) => { //acha a redacao no banco e a renderiza na pagina de edicao
@@ -116,15 +120,16 @@ app.get('/enviarRedacao', function(req, res, next) {
     res.render('redacaoSend', { title: 'Express' });
   });
 
-  app.post('/auth', function(req, res) {
+  app.post('/areaAluno', function(req, res) {
     var loginUsuario = req.body.loginUsuario;
     var senhaUsuario = req.body.senhaUsuario;
     if (loginUsuario && senhaUsuario) {
       connection.query('SELECT * FROM USUARIO WHERE loginUsuario = ? AND senhaUsuario = ?', [loginUsuario, senhaUsuario], function(error, results, fields) {
         if (results.length > 0) {
-          req.session.loggedin = true;
-          req.session.loginUsuario = loginUsuario;
-          res.redirect('/');
+        req.session.loggedin = true;
+        req.session.loginUsuario = loginUsuario;
+        res.redirect('/');
+
         } else {
           res.send('Login e/ou senha Incorretos!');
         }			
@@ -220,8 +225,14 @@ app.post("/registro", (req,res) => {
 
 
 app.get("/logout", (req,res) => { //sai da sessao do usuario
-    req.logout()
-    res.redirect("/")
+   // req.logout()
+   // res.redirect("/")
+    req.session.destroy((err) => {
+      if(err) {
+          return console.log(err);
+      }
+      res.redirect("/");
+  });
 })
 
 
