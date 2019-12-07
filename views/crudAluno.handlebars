@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">
+        <title> Projeto BD </title>
+        
+    </head>
+
+    <body>
+        <header class="default-menu">
+            <main>
+                <div class="header-1">
+
+            
+                <div class="start">
+                <img src="./images/start.png" width="40" height="36"/>
+                </div>
+                     <div class="nome-professor">
+                        <img src="./images/nomeSite.png" width="125" height="28"/>              
+                     </div>
+                </div>
+            </main>
+        </header>
+        <main class="col urls">
+            <div class="header-2">
+                <div class="menu"> 
+                    <ul>
+                        <li>
+                            <a href="/">Pagina Inicial</a>
+                        </li>
+                        {{#if user}}
+                        <li>
+                            <a href="redacoesCorrigidas">Minhas Redações</a>
+                        </li>
+                         <li>
+                            <a href="redacaoSend">Enviar Redação</a>
+                        </li>    
+                        <li>
+                            <a href="crudAluno">Conta</a>
+                        </li>                      
+                        <li>
+                            <a href="/logout">Sair</a>
+                        </li>
+                        {{else}}
+                        <li>
+                            <a href="areaAluno">Login</a>
+                        </li>
+                        <li>
+                            <a href="registro">Registrar-se</a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <div class="col-100">
+            <div class="botoes-prof">
+                {{#if user}}
+                <ul>
+                        <a href="/crudAluno/edit/{{user._id}}"><button class="btn btn-primary">EDITAR CONTA </button></a> 
+                        <a href="/crudAluno/deletar/{{user._id}}"><button class="btn btn-danger mt-2">DELETAR CONTA</button></a>  
+                </ul> 
+                {{else}}
+                {{/if}}  
+            </div>
+        </div>
+</html>

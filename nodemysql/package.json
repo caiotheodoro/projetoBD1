@@ -1,0 +1,25 @@
+{
+  "name": "nodemysql",
+  "version": "1.0.0",
+  "description": "projeto BD",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caiotheodoro/projetoBD1.git"
+  },
+  "keywords": [
+    "uga123"
+  ],
+  "author": "caio theodoro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caiotheodoro/projetoBD1/issues"
+  },
+  "homepage": "https://github.com/caiotheodoro/projetoBD1#readme",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
+}
