@@ -1,30 +1,57 @@
-# projetoBD1
+# Login-Register-Nodejs
+A simple Login/Register application developed in Nodejs using Express.
 
-Devido a um problema que tive com query's no REACT, optei por fazer em node.
-programas usados:
-Node js//
-MongoDB
+# Getting started
 
-mongoose//
-npm install mongoose//
+Unzip the downloaded file.
 
+### Installing dependencies:
+Enter this command it will install all the dependencies at once:
 
-passport//
-npm install passport//
-npm install passport-local//
+```
+npm install
+```
+Or you can install them individually:
 
-body parser//
-npm install body-parser//
+```
+npm install express express-session mysql pug-cli bcrypt util.promisify
+```
 
-express//
-npm install express//
+Sometimes you get errors and access denied add sudo to the command
 
-handlebars//
-npm install express-handlebars//
+```
+sudo npm install express express-session mysql pug-cli bcrypt util.promisify
+```
 
+### Start the application
 
-Como usar: 
-Abra o servidor mongo: (mongod)
-Abra o localhost node na pasta do projeto: (node app.js)
+```
+npm start
+```
+or
+```
+node app
+```
+### Database
 
+For this application the database  name is 'www', it contains only one table 'users'
 
+Go to core/pool.js enter your database username and password, you can use you own database name just make sure it's the same in the pool.js file so you can connect to database.
+
+### Setting up the database
+
+You can use PhpMyAdmin just import the database.sql file includes in the project directory
+
+Use those queries:
+
+```
+CREATE DATABASE www;
+```
+```
+USE www;
+```
+```
+CREATE TABLE users (id int AUTO_INCREMENT, username varchar(20), fullname varchar(20), password varchar(128), PRIMARY KEY (id));
+```
+
+if you correcty setting up the database you shouldn't get any errors.
