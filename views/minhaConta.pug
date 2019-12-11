@@ -1,0 +1,20 @@
+extends layout
+
+
+mixin message(opp, loginUsuario)
+    if(opp)
+        h1.greeting Logado como: 
+            span=loginUsuario 
+    else 
+        h1.greeting Bem-vindo 
+            span=loginUsuario 
+            |  Ao nosso Site!
+
+
+
+block content
+    .dashboard 
+        .user 
+            +message(opp, loginUsuario)
+    .minha-conta
+        include includes/minha-conta       

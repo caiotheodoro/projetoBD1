@@ -1,0 +1,22 @@
+   html
+	    body
+    <h1>Editar Anotação</h1>
+form(method="post" action="/anotacaoEditada")
+    table 
+        tr
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Titulo</span>
+            </div>
+            input(type="text" class="form-control" aria-label="Sizing example input" name="titulo" aria-describedby="inputGroup-sizing-default")=dadosAnotacao.titulo
+            </div> 
+        tr 
+                textarea(name="texto", cols="50", rows="20")=dadosAnotacao.texto
+        tr  
+            td
+            td
+                input(type="submit" value="Register")
+
+
+</div>          
+</div>      

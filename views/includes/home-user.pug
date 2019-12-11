@@ -1,0 +1,16 @@
+
+
+html 
+
+  body 
+
+  table
+  div(class = "card-columns")
+    for anotacao in anotacaoList
+        tr
+          div(class="card")
+            div(class="card-body")
+              h5(class ="card-title")= anotacao.titulo
+              p(class="card-text")=anotacao.texto
+              a(href='/pushAnotacao/'+anotacao.titulo class="btn btn-info")='Editar'
+              a(href='/deletarAnotacao/'+anotacao.titulo class="btn btn-danger")='Deletar'
